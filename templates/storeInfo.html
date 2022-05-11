@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en" class="no-js">
+<title>商户-个人信息</title>
+<link rel="shortcut icon" href="{% static 'images/diningboat_logo.ico'%}">
+<head>
+    <meta charset="utf-8" />
+	<style type="text/css">
+        * {
+        box-sizing: border-box;
+		}
+		body {
+			margin: 0;
+		}
+		.navbar{
+            background-color: #393d49;
+        }
+        .navbar-default .navbar-nav > li > a{
+            color: white;
+        }
+        .panel-heading{
+            background-color: #37bc9b;
+        }
+		body {
+			margin: 0;
+		}
+		.header {
+			background-color: #37bc9b;
+			color: white;
+			text-align: center;
+			padding: 15px;
+            margin: 0px 20px 5px 10px;
+		}
+        .navigater {
+			background-color: #37bc9b;
+			color: white;
+			padding: 1px;
+            margin: 0px 15px 5px 5px;
+		}
+		.column {
+			float: left;
+			padding: 15px;
+		}
+		.clearfix::after {
+			content: "";
+			clear: both;
+			display: table;
+		}
+		.sidemenu {
+			width: 25%;
+            padding-left: 10%;
+		}
+        .topHead {
+            margin: 0px 100px 5px 2px;
+            width:100%;
+            padding-left: 2%;
+        }
+		.content {
+			width: 75%;
+            padding-right: 10%;
+		}
+		.sidemenu ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+		.sidemenu li a {
+			margin-bottom: 4px;
+			display: block;
+			padding: 8px;
+			background-color: #eee;
+			text-decoration: none;
+			color: #666;
+		}
+		.sidemenu li a:hover {
+			background-color: #555;
+			color: white;
+        }
+        .form.input{
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-user-modify: read-write-plaintext-only;
+            outline: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css'%}">
+    <style>
+        .table {
+            border: solid 1px #ddd;
+            width: 94%;
+            margin: 10px 20px 0px 10px;
+            text-align: center;
+            {#display: inline-block;#}
+        }
+
+        th, td {
+            border-right: solid #fff 2px;
+            border-bottom: solid #ddd 3px;
+            height: 30px;
+        }
+
+        th {
+            background-color: #eee;
+            columns: #434a54;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+   <div class="topHead" >
+       <div class="navigater">
+           <ul>
+               <li style="list-style: none;text-align: right;">
+                   <img src="{% static "images/diningboat_logo.png" %}" style="height: 45px; width: 45px;margin-left: 30%; float: left;" alt="logo">
+                   <h3 style="text-align: left"><font size="6"> DiningBoat校园餐饮管理系统</font></h3>
+                   <h3 style="margin-right: 5%">{{ Name }}</h3>
+               </li>
+               <li style="list-style: none;text-align: right;">
+                   <a href="/DiningBoat/login/" style="margin-right: 5%;margin-bottom: 5%">退出</a>
+               </li>
+           </ul>
+       </div>
+
+       </li>
+   </div>
+   <div class="clearfix">
+        <div class="column sidemenu">
+            <ul>
+                <li class="panel-heading">
+                    <i class="layui-icon layui-icon-face-smile" style="color:#fff"></i>
+                    <span style="color: #fff; "><font size="3">菜单栏</font></span>
+                </li>
+                <li><a href="/DiningBoat/store_mode/goods/">我的商品</a></li>
+                <li><a href="/DiningBoat/store_mode/orders/">我的订单</a></li>
+                <li><a href="/DiningBoat/store_mode/myInfo/">我的信息</a></li>
+            </ul>
+        </div>
+
+        <div class="column content">
+            <div class="header">
+                <h3>个人信息</h3>
+            </div>
+        </div>
+   </div>
+   <table border="1" style="margin: -120px 100px 60px 27%; width: 62%">
+   <tr>
+       <th>商家名</th>
+       <td>
+           <form name="change_Sname" method="get">
+               {% csrf_token %}
+               <input name="Sname" style="width: 300px; border-style: none" type="text" value={{ Info.Sname }}></input>
+               <button name="change_Sname" value=1 type="submit" style="margin-left:0%;width:70px" href="/DiningBoat/store_mode/myInfo/">
+                   修改
+               </button>
+           </form>
+       </td>
+   </tr>
+       <tr>
+       <th>账号</th>
+       <td>
+           {{ Info.SID }}
+       </td>
+   </tr>
+       <tr>
+       <th>密码</th>
+       <td>
+           <form name="change_Spassword" method="get">
+               {% csrf_token %}
+               <input name="Spassword" style="width: 300px; border-style: none" type="text" value={{ Info.Spassword }}></input>
+               <button name="change_Spassword" value=1 type="submit" style="margin-left:0%;width:70px" href="/DiningBoat/store_mode/myInfo/">
+                   修改
+               </button>
+           </form>
+       </td>
+   </tr>
+       <tr>
+       <th>地址</th>
+       <td>
+           <form name="choose_Saddress" method="get">
+               {% csrf_token %}
+               <input name="Saddress" style="width: 300px; border-style: none" type="text" value={{ Info.Saddress }}></input>
+               <button name="change_Saddress" value=1 type="submit" style="margin-left:0%;width:70px" href="/DiningBoat/store_mode/myInfo/">
+                   修改
+               </button>
+           </form>
+       </td>
+           <tr>
+       <th>人气值</th>
+       <td>
+           {{ Info.Spopularity }}
+       </td>
+   </tr>
+   </table>
+</body>
+
+</html>
